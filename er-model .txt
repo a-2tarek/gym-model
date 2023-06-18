@@ -1,1 +1,59 @@
-init git
+  +---------------------+             +---------------------+
+  |      Gymnasium      |             |       Session       |
+  +---------------------+             +---------------------+
+  | gym_id (PK)         |             | session_id (PK)     |
+  | name                |             | sport               |
+  | address             |          /--| schedule            |
+  | phone_number        |          |  | capacity            |
+  +---------------------+          |  +---------------------+
+                                   |
+  +---------------------+          |
+  |       Member        |          |
+  +---------------------+          |
+  | member_id (PK)      |          |
+  | last_name           |          |
+  | first_name          |          |
+  | address             |          |
+  | date_of_birth       |-------\  |
+  | gender              |       |  |
+  | gym_id (FK)         |       |  |
+  +---------------------+       |  |
+                                |  |
+  +---------------------+       |  |
+  |       Coach         |       |  |
+  +---------------------+       |  |
+  | coach_id (PK)       |       |  |
+  | last_name           |       |  |
+  | first_name          |       |  |
+  | age                 |       |  |
+  | specialty           |       |  |
+  | gym_id (FK)         |-------/  |
+  +---------------------+          |
+                                   |
+                                   |
+  +---------------------+          |
+  |   Session_Member    |          |
+  +---------------------+          |
+  | session_id (FK)     |----------|
+  | member_id (FK)      |
+  +---------------------+
+
+This ER model represents the entities and their relationships in the gym management system. The entities are as follows:
+
+Gymnasium: Represents the gymnasiums with attributes such as gym_id (primary key), name, address, and phone_number.
+
+Member: Represents the gym members with attributes like member_id (primary key), last_name, first_name, address, date_of_birth, gender, and gym_id (foreign key referencing Gymnasium).
+
+Coach: Represents the coaches with attributes such as coach_id (primary key), last_name, first_name, age, specialty, and gym_id (foreign key referencing Gymnasium).
+
+Session: Represents the gym sessions with attributes like session_id (primary key), sport, schedule, capacity, and gym_id (foreign key referencing Gymnasium).
+
+Session_Member: Represents the relationship between sessions and members, indicating which members are registered for each session. It has foreign keys session_id and member_id, referencing Session and Member entities respectively.
+
+The ER model depicts the relationships between these entities as follows:
+
+A Gymnasium can have multiple Members, Coaches, and Sessions.
+A Member can be registered at only one Gymnasium.
+A Coach can work at only one Gymnasium.
+A Session can be associated with only one Gymnasium.
+A Session can have multiple Members registered, and a Member can register for multiple Sessions.
